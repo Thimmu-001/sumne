@@ -9,14 +9,11 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 
 // Sample token data
 const tokens = [
-  { symbol: "SOL", name: "Solana", icon: "⚡", balance: "1.25" },
-  { symbol: "USDC", name: "USD Coin", icon: "🔵", balance: "125.50" },
-  { symbol: "USDT", name: "Tether", icon: "🟢", balance: "100.00" },
-  { symbol: "BTC", name: "Bitcoin (Wrapped)", icon: "🟠", balance: "0.005" },
-  { symbol: "ETH", name: "Ethereum (Wrapped)", icon: "🟣", balance: "0.08" },
-  { symbol: "BONK", name: "Bonk", icon: "🐕", balance: "1000000" },
-  { symbol: "JUP", name: "Jupiter", icon: "🪐", balance: "500" },
-  { symbol: "RAY", name: "Raydium", icon: "🌊", balance: "200" },
+  { symbol: "SOL", name: "Solana", icon: "⚡",  },
+  { symbol: "USDC", name: "USD Coin", icon: "🔵",  },
+  { symbol: "Lazy-Token", name: "Lazy-Token", icon: "🟢", },
+  { symbol: "Lazor-Token", name: "Lazor-Token", icon: "🟠",  },
+ 
 ]
 
 type TokenSelectorProps = {
@@ -43,7 +40,7 @@ export function TokenSelector({ selectedToken, onSelect, side }: TokenSelectorPr
     onSelect({
       symbol: token.symbol,
       icon: token.icon,
-      balance: token.balance,
+      balance:""
     })
     setIsOpen(false)
   }
@@ -90,7 +87,6 @@ export function TokenSelector({ selectedToken, onSelect, side }: TokenSelectorPr
                       <div className="text-sm text-gray-400">{token.name}</div>
                     </div>
                     <div className="ml-auto text-right">
-                      <div className="font-medium">{token.balance}</div>
                       <div className="text-sm text-gray-400">Balance</div>
                     </div>
                   </div>

@@ -16,9 +16,9 @@ export function Navbar() {
       <div className="flex items-center space-x-6">
         <Link href="/" className="flex items-center space-x-2">
           <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-teal-500 flex items-center justify-center">
-            <span className="text-white font-bold">J</span>
+            <span className="text-white font-bold">LS</span>
           </div>
-          <span className="text-white font-bold text-xl">Jup.ag</span>
+          <span className="text-white font-bold text-xl">LazorSwap</span>
         </Link>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-auto">

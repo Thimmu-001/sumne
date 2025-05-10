@@ -17,6 +17,7 @@ export function TokenList() {
           variant="outline"
           className="flex items-center space-x-2 h-8 px-3 bg-background/20 border-gray-700 hover:bg-background/40 whitespace-nowrap"
         >
+          
           <span>{token.icon}</span>
           <span>{token.symbol}</span>
           <span
