@@ -4,12 +4,8 @@ import { Button } from "@/components/ui/button"
 // Sample token data with price changes
 const popularTokens = [
   { symbol: "SOL", icon: "⚡", change: "+2.5%" },
-  { symbol: "USDC", icon: "🔵", change: "0.0%" },
-  { symbol: "BTC", icon: "🟠", change: "-1.2%" },
-  { symbol: "ETH", icon: "🟣", change: "+0.8%" },
-  { symbol: "BONK", icon: "🐕", change: "+15.3%" },
-  { symbol: "JUP", icon: "🪐", change: "+5.7%" },
-  { symbol: "USDT", icon: "🟢", change: "-0.1%" },
+  { symbol: "Lazor-Token", icon: "🔵", change: "0.0%" },
+  { symbol: "Lazy-Token", icon: "🟠", change: "-1.2%" },
 ]
 
 export function TokenList() {

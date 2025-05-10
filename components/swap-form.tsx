@@ -11,6 +11,10 @@ import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible"
+import { loadTokenSwap,executeSwap } from "@/lib/tokenSwap"
+import { Connection, PublicKey } from "@solana/web3.js"
+import { useWallet } from "@lazorkit/wallet"
+
 
 export function SwapForm() {
   const { isConnected } = useWalletContext()
@@ -44,27 +48,42 @@ export function SwapForm() {
   }, [sellAmount, selectedSellToken, selectedBuyToken])
 
   const handleSwap = async () => {
-    if (!isConnected) return
+  if (!isConnected) return;
 
-    setIsSwapping(true)
+  setIsSwapping(true);
 
-    try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+  try {
+    const connection = new Connection("https://rpc.lazorkit.xyz");
+    const tokenSwapAddress = new PublicKey("FjhNkgrGQSBuG6hr1HyaTHFn6DtNcnGuMq4ZN7ytaQS7");
+    // Load TokenSwap instance inside handleSwap
 
-      // Reset form
-      setSellAmount("")
-      setBuyAmount("")
+    const wallet = useWallet()
 
-      // Show success message
-      alert("Swap successful!")
-    } catch (error) {
-      console.error("Swap failed:", error)
-      alert("Swap failed. Please try again.")
-    } finally {
-      setIsSwapping(false)
-    }
+    const payer = new PublicKey(wallet.smartWalletAuthorityPubkey)
+    const tokenSwapInstance = await loadTokenSwap(connection, tokenSwapAddress, payer);
+
+    const txId = await executeSwap(
+      connection,
+      tokenSwapInstance,
+      userSourceTokenAccount,
+      userDestinationTokenAccount,
+      userTransferAuthority,
+      BigInt(sellAmount),
+      BigInt(10),
+    );
+
+    console.log("Swap transaction successful:", txId);
+    setSellAmount("");
+    setBuyAmount("");
+    alert("Swap successful!");
+  } catch (error) {
+    console.error("Swap failed:", error);
+    alert("Swap failed. Please try again.");
+  } finally {
+    setIsSwapping(false);
   }
+};
+
 
   const handleSwitchTokens = () => {
     const tempToken = selectedSellToken
